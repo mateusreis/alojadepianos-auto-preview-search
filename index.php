@@ -127,7 +127,8 @@ class WC_Auto_Preview_Search {
                     'value' => get_the_title(), // Value to fill in the search input
                     'title' => get_the_title(), // Full title for display
                     'url' => get_permalink(),
-                    'price' => $product->get_price_html(),
+                    // 'price' => $product->get_price_html(),
+                    'price' => $product->get_sale_price(),
                     'image' => $image_url,
                 );
             }
