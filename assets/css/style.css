@@ -1,22 +1,25 @@
  .wc-auto-preview-search .wc-auto-preview-search-input {
-    appearance: none;
+    /* appearance: none;
     border: 1px solid #949494;
     flex-grow: 1;
     margin-left: 0;
     margin-right: 0;
     min-width: 3rem;
     padding: 8px 20px;
-    text-decoration: unset !important;    
+    text-decoration: unset !important;     */
 }
 
 .wc-auto-preview-search .wc-auto-preview-search-submit {
-    padding: 10px 15px;
+
     background: #990000;
     color: white;
-    border: none;
+    /* border: none;
     cursor: pointer;
-    line-height: 1.5;
+    line-height: 1.5; */
 }
+
+
+
 
 /* Custom UI Autocomplete Styling */
 .ui-autocomplete {

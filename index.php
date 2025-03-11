@@ -150,30 +150,16 @@ class WC_Auto_Preview_Search {
         ob_start();
         ?>
 
-
-
-
         <div class="wc-auto-preview-search">
             <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>" class="wp-block-search__button-outside wp-block-search__text-button wp-block-search">
                 <label class="wp-block-search__label screen-reader-text" for="wp-block-search__input-5">Pesquisar</label>
                 <div class="wp-block-search__inside-wrapper ">
-                    <input class="wp-block-search__input wc-auto-preview-search-input" id="wc-auto-preview-search-input" placeholder="Pesquisar produtos..." value="asdfasdfasdf" type="search" name="s" required="">
+                    <input class="wp-block-search__input wc-auto-preview-search-input" id="wc-auto-preview-search-input" placeholder="Pesquisar produtos..." value="" type="search" name="s" required="">
                     <input type="hidden" name="post_type" value="product">
-                    <button aria-label="Search" class="wp-block-search__button wp-element-button wc-auto-preview-search-submit" type="submit">Search</button>
+                    <button aria-label="Search" class="wp-block-search__button wp-element-button wc-auto-preview-search-submit" type="submit">Buscar produto</button>
                 </div>
             </form>
-
         </div>
-
-
-<!-- 
-        <div class="wc-auto-preview-search-container">
-            <form class="wc-auto-preview-search-form" action="<?php echo esc_url(home_url('/')); ?>" method="get">
-                <input type="text" name="s" class="wc-auto-preview-search-input" placeholder="<?php echo esc_attr($atts['placeholder']); ?>" autocomplete="off" />
-                <input type="hidden" name="post_type" value="product" />
-                <button type="submit" class="wc-auto-preview-search-submit"><?php echo esc_html($atts['submit_text']); ?></button>
-            </form>
-        </div> -->
 
         <?php
         return ob_get_clean();
