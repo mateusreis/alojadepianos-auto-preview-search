@@ -1,22 +1,132 @@
- .wc-auto-preview-search .wc-auto-preview-search-input {
-    /* appearance: none;
-    border: 1px solid #949494;
-    flex-grow: 1;
-    margin-left: 0;
-    margin-right: 0;
-    min-width: 3rem;
-    padding: 8px 20px;
-    text-decoration: unset !important;     */
+
+.wc-auto-preview-search {
+    line-height: 1;
+}
+.wc-auto-preview-search .wc-auto-preview-search-input {
+    font-weight: 800;
+    color: #666;
 }
 
 .wc-auto-preview-search .wc-auto-preview-search-submit {
-
     background: #990000;
-    color: white;
-    /* border: none;
     cursor: pointer;
-    line-height: 1.5; */
+    font-weight: 800;
 }
+
+.wp-block-search__button {
+    /* margin-left: 10px; */
+    word-break: normal;
+}
+
+.wp-block-search__button.has-icon {
+    line-height: 0;
+}
+
+
+:where(.wp-block-search__button) {
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+}
+
+.wp-block-search__inside-wrapper{
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.wp-block-search__label {
+    width: 100%;
+}
+
+.wp-block-search__input {
+    appearance: none;
+    /* border: 1px solid #949494; */
+    flex-grow: 1;
+    margin-left: 0;
+    margin-right: 0;
+
+
+    text-decoration: unset !important;
+}
+
+.wp-block-search.wp-block-search__button-only .wp-block-search__button {
+    flex-shrink: 0;
+    margin-left: 0;
+    max-width: 100%;
+}
+
+.wp-block-search.wp-block-search__button-only .wp-block-search__button[aria-expanded="true"] {
+    max-width: calc(100% - 100px);
+}
+
+.wp-block-search.wp-block-search__button-only .wp-block-search__inside-wrapper {
+    min-width: 0 !important;
+    transition-property: width;
+}
+
+.wp-block-search.wp-block-search__button-only .wp-block-search__input {
+    flex-basis: 100%;
+    transition-duration: 0.3s;
+}
+
+.wp-block-search.wp-block-search__button-only.wp-block-search__searchfield-hidden,
+.wp-block-search.wp-block-search__button-only.wp-block-search__searchfield-hidden .wp-block-search__inside-wrapper {
+    overflow: hidden;
+}
+
+.wp-block-search.wp-block-search__button-only.wp-block-search__searchfield-hidden .wp-block-search__input {
+    border-left-width: 0 !important;
+    border-right-width: 0 !important;
+    flex-basis: 0;
+    flex-grow: 0;
+    margin: 0;
+    min-width: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 0 !important;
+}
+
+:where(.wp-block-search__input) {
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    text-transform: inherit;
+}
+
+:where(.wp-block-search__button-inside .wp-block-search__inside-wrapper) {
+    border: 1px solid #949494;
+    box-sizing: border-box;
+    padding: 4px;
+}
+
+:where(.wp-block-search__button-inside .wp-block-search__inside-wrapper) .wp-block-search__input {
+    border: none;
+    /* border-radius: 0; */
+    padding: 0 4px;
+}
+
+:where(.wp-block-search__button-inside .wp-block-search__inside-wrapper) .wp-block-search__input:focus {
+    outline: none;
+}
+
+:where(.wp-block-search__button-inside .wp-block-search__inside-wrapper) :where(.wp-block-search__button) {
+    padding: 4px 8px;
+}
+
+.wp-block-search.aligncenter .wp-block-search__inside-wrapper {
+    margin: auto;
+}
+
+.wp-block[data-align="right"] .wp-block-search.wp-block-search__button-only .wp-block-search__inside-wrapper {
+    float: right;
+}
+
+
+
 
 
 
@@ -28,12 +138,12 @@
     left: 0;
     z-index: 1000;
     background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 0 0 4px 4px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    /* border: 1px solid #ddd; */
+    /* border-radius: 0 0 4px 4px; */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     max-height: 400px;
-    overflow-y: auto;
-    /* width: 100% !important; */
+    overflow-y:visible;
+
     padding: 0;
     font-size: small;
 }
@@ -66,7 +176,7 @@
 
 .wc-product-preview-image {
     flex: 0 0 80px;
-    margin-right: 15px;
+    margin-right: 5px;
     padding:5px;
 }
 
@@ -74,7 +184,7 @@
     width: 80px;
     height: 80px;
     object-fit: cover;
-    border-radius: 3px;
+    border-radius: 5px;
     display: block;
 }
 
@@ -108,18 +218,25 @@
     background-color: #f9f9f9;
 }
 
+
+
+
+
+
 @media (max-width: 767px) {
+
+    .ui-autocomplete {
+        width: 90% !important;
+    }
+
     .wc-auto-preview-search-form {
         flex-direction: column;
     }
     
-    .wc-auto-preview-search-input {
-        border-radius: 4px;
-        margin-bottom: 10px;
-    }
+
     
     .wc-auto-preview-search-submit {
-        border-radius: 4px;
+        /* border-radius: 4px; */
     }
     
     .wc-product-preview-image {

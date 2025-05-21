@@ -2,6 +2,14 @@
     'use strict';
     
     $(document).ready(function() {
+        // Focus the search input when page loads
+        $('#wc-auto-preview-search-input').focus();
+
+        // Focus the search input when clicking anywhere in the search container
+        $('.wc-auto-preview-search').on('click', function() {
+            $('#wc-auto-preview-search-input').focus();
+        });
+
         // Initialize autocomplete
         $('#wc-auto-preview-search-input').autocomplete({
             source: function(request, response) {

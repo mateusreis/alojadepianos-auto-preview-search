@@ -1,16 +1,22 @@
 <?php
 /**
- * Plugin Name: WooCommerce Auto Preview Search
+ * Plugin Name: A Loja de Pianos Auto Preview Search
  * Plugin URI: https://example.com/woocommerce-auto-preview-search
  * Description: Adds an autocomplete search for products with inline product previews including image, title, and price.
- * Version: 1.0.0
- * Author: Your Name
- * Author URI: https://example.com
+ * Version: 1.0.2
+ * Author: Mateus Reis
+ * Author URI: https://www.mateusreuis.com.br
  * Text Domain: wc-auto-preview-search
  * Domain Path: /languages
  * WC requires at least: 3.0.0
  * WC tested up to: 8.6.0
  */
+
+// instalar plugin woocommerce-auto-preview-search
+// configurar o shortcode
+// [wc_auto_preview_search placeholder="BUSCAR PRODUTOS..." submit_text="BUSCAR"]
+// dá pra navegar com o teclado e tem auto foco 
+
 
 // Exit if accessed directly
 if (!defined('ABSPATH')) {
@@ -35,7 +41,25 @@ class WC_Auto_Preview_Search {
         
         // Add widget
         add_action('widgets_init', array($this, 'register_widget'));
+
+        add_action('wp_enqueue_scripts',  array($this, 'my_plugin_enqueue_search_block_css'));
     }
+    
+
+    public function my_plugin_enqueue_search_block_css() {
+        // Register the block style
+        wp_register_style(
+            'wp-block-search-inline-css',
+            false, // Indicates it's an inline style
+            array(),
+            null // Version (null means WordPress will handle it)
+        );
+    
+        // Enqueue the block style
+        wp_enqueue_style('wp-block-search-inline-css');
+    }
+
+    
     
     /**
      * Enqueue scripts and styles
@@ -45,6 +69,8 @@ class WC_Auto_Preview_Search {
         if (is_admin()) {
             return;
         }
+
+  
         
         wp_enqueue_style(
             'wc-auto-preview-search-styles',
@@ -92,7 +118,7 @@ class WC_Auto_Preview_Search {
         $args = array(
             'post_type' => 'product',
             'post_status' => 'publish',
-            'posts_per_page' => 8, // no máximo 4
+            'posts_per_page' => 4, // no máximo 4
             's' => $search_term,
             'meta_query' => array(
                 array(
@@ -128,7 +154,7 @@ class WC_Auto_Preview_Search {
                     'title' => get_the_title(), // Full title for display
                     'url' => get_permalink(),
                     // 'price' => $product->get_price_html(),
-                    'price' => $product->get_sale_price(),
+                    'price' => "a partir de " . wc_price($product->get_price()),
                     'image' => $image_url,
                 );
             }
@@ -151,14 +177,18 @@ class WC_Auto_Preview_Search {
         ?>
 
         <div class="wc-auto-preview-search">
+
             <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>" class="wp-block-search__button-outside wp-block-search__text-button wp-block-search">
+            <div class="wp-block-search__outside-wrapper  ">    
                 <label class="wp-block-search__label screen-reader-text" for="wp-block-search__input-5">Pesquisar</label>
                 <div class="wp-block-search__inside-wrapper ">
-                    <input class="wp-block-search__input wc-auto-preview-search-input" id="wc-auto-preview-search-input" placeholder="Pesquisar produtos..." value="" type="search" name="s" required="">
+                    <input class="wp-block-search__input wc-auto-preview-search-input" id="wc-auto-preview-search-input" placeholder="<?php echo $atts['placeholder']; ?>" value="" type="search" name="s" required="">
                     <input type="hidden" name="post_type" value="product">
-                    <button aria-label="Search" class="wp-block-search__button wp-element-button wc-auto-preview-search-submit" type="submit">Buscar produto</button>
+                    <button aria-label="Search" class="wp-block-search__button wp-element-button wc-auto-preview-search-submit" type="submit"><?php echo $atts['submit_text']; ?></button>
                 </div>
+            </div>
             </form>
+       
         </div>
 
         <?php
