@@ -12,10 +12,7 @@
  * WC tested up to: 8.6.0
  */
 
-// instalar plugin woocommerce-auto-preview-search
-// configurar o shortcode
-// [wc_auto_preview_search placeholder="BUSCAR PRODUTOS..." submit_text="BUSCAR"]
-// dá pra navegar com o teclado e tem auto foco 
+
 
 
 // Exit if accessed directly
@@ -120,6 +117,7 @@ class WC_Auto_Preview_Search {
             'post_status' => 'publish',
             'posts_per_page' => 4, // no máximo 4
             's' => $search_term,
+            
             'meta_query' => array(
                 array(
                     'key' => '_stock_status',
@@ -176,20 +174,19 @@ class WC_Auto_Preview_Search {
         ob_start();
         ?>
 
-        <div class="wc-auto-preview-search">
 
-            <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>" class="wp-block-search__button-outside wp-block-search__text-button wp-block-search">
-            <div class="wp-block-search__outside-wrapper  ">    
-                <label class="wp-block-search__label screen-reader-text" for="wp-block-search__input-5">Pesquisar</label>
-                <div class="wp-block-search__inside-wrapper ">
-                    <input class="wp-block-search__input wc-auto-preview-search-input" id="wc-auto-preview-search-input" placeholder="<?php echo $atts['placeholder']; ?>" value="" type="search" name="s" required="">
+        <div class="aps-mod">
+            <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>" class="">
+            <div class="aps-mod-inside">    
+                <label class="aps-mod-label" for="wp-block-search__input-5">Pesquisar</label>
+                <div class="aps-mod-search-box">
+                    <input class="aps-input" id="wc-auto-preview-search-input" placeholder="<?php echo $atts['placeholder']; ?>" value="" type="search" name="s" required="">
                     <input type="hidden" name="post_type" value="product">
-                    <button aria-label="Search" class="wp-block-search__button wp-element-button wc-auto-preview-search-submit" type="submit"><?php echo $atts['submit_text']; ?></button>
+                    <button aria-label="Search" class="aps-btn" type="submit"><?php echo $atts['submit_text']; ?></button>
                 </div>
             </div>
             </form>
-       
-        </div>
+        </div>        
 
         <?php
         return ob_get_clean();
